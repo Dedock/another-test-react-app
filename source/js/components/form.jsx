@@ -2,6 +2,7 @@ import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 import TextField from 'material-ui/TextField';
 import SelectField from 'material-ui/SelectField';
+import RaisedButton from 'material-ui/RaisedButton';
 import MenuItem from 'material-ui/MenuItem';
 
 const validate = values => {
@@ -15,8 +16,6 @@ const validate = values => {
   const stringFields = [
     'firstName',
     'lastName',
-    'phone',
-    'age',
   ];
 
   requiredFields.forEach(field => {
@@ -26,16 +25,16 @@ const validate = values => {
   });
 
   stringFields.forEach(field => {
-    if (!values[field] && !'Z[\\s\\S]*?Z'.test(values[field])) {
+    if (!/^[a-zA-Z]*$/.test(values[field])) {
       errors[field] = 'Only letters allowed';
     }
   });
 
   if (
-    values.phone &&
-    !/^\d+$/.test(values.phone)
+    values.age &&
+    !/^\d+$/.test(values.age)
   ) {
-    errors.phone = 'Only number allowed';
+    errors.age = 'Only number allowed';
   }
   if (typeof values.gender !== 'boolean') {
     errors.gender = 'Required';
@@ -78,7 +77,7 @@ const renderSelectField = ({
 const MyForm = props => {
   const { handleSubmit, pristine, reset, submitting } = props;
   return (
-    <form onSubmit={ handleSubmit }>
+    <form className='form' onSubmit={ handleSubmit }>
       <div>
         <Field
           name='firstName'
@@ -106,12 +105,7 @@ const MyForm = props => {
         <Field name='age' component={ renderTextField } label='Age' />
       </div>
       <div>
-        <button type='submit' disabled={ pristine || submitting }>
-          Submit
-        </button>
-        <button type='button' disabled={ pristine || submitting } onClick={ reset }>
-          Clear Values
-        </button>
+        <RaisedButton disabled={ pristine || submitting } type='submit' label='Add' primary={ true } />
       </div>
     </form>
   );

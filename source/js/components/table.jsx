@@ -88,14 +88,16 @@ class MyTable extends Component {
 
 MyTable.propTypes = {
   app: PropTypes.shape({
-    notes: PropTypes.arrayOf({
-      firstName: PropTypes.string,
-      lastName: PropTypes.string,
-      phone: PropTypes.number,
-      gender: PropTypes.bool,
-      age: PropTypes.number,
-    }).isRequired,
-  }).isRequired,
+    notes: PropTypes.arrayOf(
+      PropTypes.shape({
+        firstName: PropTypes.string,
+        lastName: PropTypes.string,
+        phone: PropTypes.any,
+        gender: PropTypes.bool,
+        age: PropTypes.number,
+      }).isRequired
+  ).isRequired,
+  }),
 };
 
 function mapStateToProps({ app }) {

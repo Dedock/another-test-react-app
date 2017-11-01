@@ -13,6 +13,7 @@ export default function (state = defaultState, action = {}) {
   const { type, data } = action;
   switch (type) {
     case ADD_NOTE:
+      data.age = Number(data.age)
       return Object.assign({}, state, {
         notes: state.notes.concat(data),
       });

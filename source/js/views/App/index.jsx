@@ -36,7 +36,7 @@ class App extends Component {
 }
 
 App.propTypes = {
-  dispatch: PropTypes.function,
+  dispatch: PropTypes.func,
 };
 
 export default connect()(App);
