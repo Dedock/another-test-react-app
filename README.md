@@ -12,7 +12,7 @@ To run dev:
 
 `npm i`
 
-`npm start` in different terminals
+`npm start`
 
 To run production: 
 
