@@ -6,37 +6,29 @@ import * as actions from 'actions/app';
 import Table from '../../components/table';
 import Form from '../../components/form';
 
-const createHandlers = function (dispatch) {
-  const addNote = function (data) {
-    dispatch(actions.addNote(data));
-    dispatch(reset('MyForm'));
-  };
-
-  return {
-    addNote,
-    // other handlers
-  };
-};
-
-class App extends Component {
+@connect(() => ({}))
+export default class App extends Component {
+  static propTypes = {
+    dispatch: PropTypes.func,
+  }
 
   constructor(props) {
     super(props);
-    this.handlers = createHandlers(this.props.dispatch);
-  }
 
+    this.addNote = this.addNote.bind(this);
+  }
+  addNote(data) {
+    const { dispatch } = this.props;
+
+    dispatch(actions.addNote(data));
+    dispatch(reset('MyForm'));
+  }
   render() {
     return (
       <div>
         <Table />
-        <Form onSubmit={ this.handlers.addNote } />
+        <Form onSubmit={ this.addNote } />
       </div>
     );
   }
 }
-
-App.propTypes = {
-  dispatch: PropTypes.func,
-};
-
-export default connect()(App);

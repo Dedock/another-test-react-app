@@ -18,6 +18,11 @@ es6Promise.polyfill();
 
 const store = configureStore();
 
+window.onbeforeunload = () => {
+  const { app } = store.getState();
+  localStorage.setItem('notes', JSON.stringify(app.get('notes')));
+};
+
 const render = Component => {
   ReactDOM.render(
     <AppContainer>

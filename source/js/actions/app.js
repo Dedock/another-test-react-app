@@ -1,6 +1,7 @@
 
 export const ADD_NOTE = 'ADD_NOTE';
 export const REMOVE_NOTE = 'REMOVE_NOTE';
+export const SORT_NOTES = 'SORT_NOTES';
 
 export const addNote = data => {
   return {
@@ -9,10 +10,18 @@ export const addNote = data => {
   };
 }
 
-export const removeNote = index => {
+export const removeNote = note => {
   return {
     type: REMOVE_NOTE,
-    index,
+    note,
+  };
+}
+
+export const sortNotes = (field, direction) => {
+  return {
+    type: SORT_NOTES,
+    field,
+    direction,
   };
 }
 
