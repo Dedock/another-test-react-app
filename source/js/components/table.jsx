@@ -18,18 +18,17 @@ import MenuItem from 'material-ui/MenuItem';
 
 const styles = {
   customWidth: {
-    width: 100,
+    width: 150,
   },
 };
 
 
 @connect(state => ({
-  notes: state.app.get('notes'),
   sortedNotes: state.app.get('sortedNotes'),
 }))
 export default class MyTable extends Component {
   static propTypes = {
-    notes: PropTypes.arrayOf(
+    sortedNotes: PropTypes.arrayOf(
       PropTypes.shape({
         firstName: PropTypes.string,
         lastName: PropTypes.string,
@@ -62,7 +61,6 @@ export default class MyTable extends Component {
     phone: '',
     gender: '',
     age: '',
-    sortedArray: [],
   };
 
   gender(value) {
@@ -73,8 +71,6 @@ export default class MyTable extends Component {
     const { dispatch } = this.props;
     dispatch(removeNote(index));
   }
-
-  handleChange = (event, index, value) => this.setState({ value });
 
   sortNotesByFirstName = (event, index, value) => {
     const { dispatch } = this.props;
@@ -104,12 +100,6 @@ export default class MyTable extends Component {
     const { dispatch } = this.props;
 
     dispatch(sortNotes('age', value));
-  }
-
-  componentWillMount() {
-    this.setState({
-      sortedArray: this.props.notes,
-    });
   }
 
   render() {

@@ -1,6 +1,5 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
-import logger from 'dev/logger';
 
 // Remove if you are not using server rendering
 // Also remove following packages from package.json
@@ -42,7 +41,7 @@ export default () => {
   } else {
     // In development mode beside thunk
     // logger and DevTools are added
-    middleware = applyMiddleware(thunk, logger);
+    middleware = applyMiddleware(thunk);
 
     // Enable DevTools if browser extension is installed
     if (!process.env.SERVER_RENDER && window.__REDUX_DEVTOOLS_EXTENSION__) { // eslint-disable-line
